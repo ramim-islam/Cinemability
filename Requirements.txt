@@ -10,7 +10,7 @@ Functional Requirements Gathering for Cinemability
 	7. Search (title / cast / category) all matching movies should be returned in ascending order of movie title. (From Their Favourite List)
 	8. Search for (title / cast / category) all matching movies should be returned in ascending order of movie title (From The Overall List).
 
-2. Admin
+2. Admin (optional)
 	1. Login
 	2. Logout
 	3. Add new Movies with proper details.
