@@ -1,0 +1,18 @@
+Functional Requirements Gathering for Cinemability
+
+1. For a specific User
+	1. Register through Email.
+	2. Login. (optional)
+	3. Logout. (optional)
+	4. Add movies to favourite.
+	5. Remove movies from favourite.
+	6. See their personal details and movies they added to their favourite.
+	7. Search (title / cast / category) all matching movies should be returned in ascending order of movie title. (From Their Favourite List)
+	8. Search for (title / cast / category) all matching movies should be returned in ascending order of movie title (From The Overall List).
+
+2. Admin (optional)
+	1. Login
+	2. Logout
+	3. Add new Movies with proper details.
+	4. Delete a Movies.
+	5. Search for (title / cast / category) all matching movies should be returned in ascending order of movie title.
