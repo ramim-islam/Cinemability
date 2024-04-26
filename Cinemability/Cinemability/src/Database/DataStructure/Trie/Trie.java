@@ -1,8 +1,5 @@
 package Database.DataStructure.Trie;
-import java.util.Arrays;
 import java.util.Vector;
-
-import javax.xml.transform.Templates;
 
 public class Trie {
     
@@ -10,11 +7,11 @@ public class Trie {
     final int MAX = (int) (2e5 + 10);
     int[][] trie = new int[MAX][300];
     int[] Count = new int[MAX];
-    boolean[] End = new boolean[MAX];
+    int[] End = new int[MAX];
     int pointer = 0;
    
 
-    public void addString(String str){
+    public void addString(String str, int userid){
         int node = 1;
         for (char ch : str.toCharArray()){
             int edge = (int)ch;
@@ -27,17 +24,25 @@ public class Trie {
             node = trie[node][edge];
             Count[node]++;
         }
-        End[node] = true;
+        End[node] = userid;
     }
 
 
-    public boolean searchString(String str){
-        return false;
+    public int searchString(String str){
+        int node = 1;
+        for (char ch : str.toCharArray()){
+            int edge = (int)ch;
+            if (trie[node][edge] == 0){
+                return -1;
+            }
+            node = trie[node][edge];
+        }
+        return End[node];
     }
    
     public void deleteString(String str){
 
-        if(searchString(str)){
+        if(searchString(str) != 0){
             int node = 1;
             for (char ch : str.toCharArray()){
                 int edge = (int)ch;
@@ -49,7 +54,7 @@ public class Trie {
                 node = Tempnode;
                 Count[node]--;
             }
-            End[node] = false;
+            End[node] = 0;
         }
         
     }
