@@ -1,6 +1,7 @@
 package Model.Movies;
-import Model.Cast.*;
 import java.util.*;
+
+import Model.Movies.Cast.*;
 
 
 public class Movies {

@@ -7,10 +7,10 @@ public class NormalUser{
     String Email;
     String Password;
     Vector <Movies> favouriteMovies = new Vector <Movies> ();
-    NormalUser(String Name, String Email, String Password, Vector <Movies> favouriteMovies){
+    NormalUser(String Name, String Email, String Password){
         this.Name = Name;
         this.Email = Email;
         this.Password = Password;
-        this.favouriteMovies = favouriteMovies;
     }
+   
 }

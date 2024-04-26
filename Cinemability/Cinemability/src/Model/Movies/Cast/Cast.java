@@ -1,4 +1,4 @@
-package Model.Cast;
+package Model.Movies.Cast;
 public class Cast {
     String name;
     Cast(String name){

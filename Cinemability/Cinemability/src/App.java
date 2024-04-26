@@ -1,5 +1,12 @@
+import Controller.StartApp.*;
 public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+
+    public static void main(String[] args){
+        // StartApp startapp = new StartApp();
+        // startapp.startApp();
+
+
+        Test TestingField = new Test();
+        TestingField.Run();
     }
 }
