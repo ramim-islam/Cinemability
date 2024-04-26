@@ -6,7 +6,7 @@ public class App {
         startapp.startApp();
 
 
-        Test TestingField = new Test();
-        TestingField.Run();
+        // Test TestingField = new Test();
+        // TestingField.Run();
     }
 }
