@@ -1,22 +1,20 @@
 package Database.DataStructure.Trie;
 import java.util.Vector;
 
-import Model.User.User;
 
-public class Trie {
-    
+public class Trie{
     Vector<Integer> BucketforPointer = new Vector<Integer>();
     final int MAX = (int) (2e5 + 10);
     int[][] trie = new int[MAX][300];
     int[] Count = new int[MAX];
-    User[] End = new User[MAX];
+    Object[] End = new Object[MAX];
     int pointer = 0;
    
 
-    public void addString(User user){
+    public void add(String str, Object obj){
         
         int node = 1;
-        for (char ch : user.Email.toCharArray()){
+        for (char ch : str.toCharArray()){
             int edge = (int)ch;
             if (trie[node][edge] == 0){
                 if (!BucketforPointer.isEmpty()){
@@ -27,24 +25,23 @@ public class Trie {
             node = trie[node][edge];
             Count[node]++;
         }
-        user.id = node;
-        End[node] = user;
+        End[node] = obj;
     }
 
 
-    public User searchString(String str){
+    public Object search(String str){
         int node = 1;
         for (char ch : str.toCharArray()){
             int edge = (int)ch;
-            if (trie[node][edge] == 0)return null;
+            if (trie[node][edge] == 0)return -1;
             node = trie[node][edge];
         }
         return End[node];
     }
    
-    public void deleteString(String str){
+    public void delete(String str){
 
-        if(searchString(str) != null){
+        if(search(str) != null){
             int node = 1;
             for (char ch : str.toCharArray()){
                 int edge = (int)ch;
@@ -60,6 +57,4 @@ public class Trie {
         }
         
     }
-
-   
 }

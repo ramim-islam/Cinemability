@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 import Controller.Login.Login;
 import Controller.Registration.Registration;
-import Database.UsersTable.UserDatahouse;
+import Database.UsersDatahouse.UserDatahouse;
 import Model.User.User;
 
 public class StartApp {
@@ -25,7 +25,7 @@ public class StartApp {
     void RegistrationFunctionality(UserDatahouse userDatahouse, String command){
         
         Registration registration = new Registration();
-        registration.RegistrationFormView(userDatahouse);
+        registration.RegistrationForm(userDatahouse);
         LoginFunctionality(userDatahouse);
     }
 

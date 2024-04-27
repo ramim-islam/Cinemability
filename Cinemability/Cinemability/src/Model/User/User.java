@@ -7,13 +7,14 @@ public class User{
     public String Email;
     public String Password;
     public String userType;
-    public int id;
+    public String PrimaryKey;
     public Vector <Movies> favouriteMovies = new Vector <Movies> ();
-    public User(String UserName, String Email, String Password, String userType){
+    public User(String UserName, String Email, String Password, String userType, String PrimaryKey){
         this.UserName = UserName;
         this.Email = Email;
         this.Password = Password;
         this.userType = userType;
+        this.PrimaryKey = PrimaryKey;
     }
    
 }

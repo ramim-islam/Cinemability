@@ -6,12 +6,13 @@ import Model.Movies.Cast.*;
 
 public class Movies {
 
-    String title;
-    String Categorey;
-    Vector<Cast>cast = new Vector<Cast>();
+    public int id;
+    public String Title;
+    public String Categorey;
+    public Vector<Cast>cast = new Vector<Cast>();
 
-    Movies(String title, String Category, Vector<Cast> cast){
-        this.title = title;
+    Movies(String Title, String Category, Vector<Cast> cast){
+        this.Title = Title;
         this.Categorey = Category;
         this.cast = cast;
     }

@@ -1,32 +1,22 @@
 package Controller.Login;
-import java.util.Scanner;
-
-import Database.UsersTable.UserDatahouse;
+import Database.UsersDatahouse.UserDatahouse;
 import Model.User.User;
+import View.LoginScreen.LoginScreen;
 
 
 public class Login{
 
-    String Email;
-    String Password;
+    public String Email;
+    public String Password;
     boolean LoginStatus = false;
 
     public User LoginFormView(UserDatahouse userdatahouse){
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
-        System.out.println("\n**** Cinemability ****\n");
-        System.out.println("********   LOGIN   ********\n");
-        try (Scanner input = new Scanner(System.in)) {
-            System.out.print("Enter your Email : ");
-            this.Email = input.nextLine();
-
-            System.out.print("Enter your Password : ");
-            this.Password = input.nextLine();
-        }
-
+        
+        LoginScreen loginScreen = new LoginScreen(); 
+        Login login = loginScreen.LoginScreenView();
         User user = null;
-        if (userdatahouse.isUserExist(Email, Password)){
-            user = userdatahouse.getUser(Email);
+        if (userdatahouse.isUserExist(login.Email, login.Password)){
+            user = userdatahouse.getUser(login.Email);
         }   
         return user;             
 
