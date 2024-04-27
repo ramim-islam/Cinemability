@@ -1,27 +1,24 @@
-package Database.DataStructure.Trie;
+package Database.UserDatahouse;
 import java.util.Vector;
+import Model.User.User;
 
 
-public class Trie{
+public class UserTrie{
     
-    public class DynamicObject <GenericObj>{
-        public Vector <GenericObj> List;
-        DynamicObject(){
-            List = new Vector<GenericObj>();
-        }
+    
+    public class DynamicObject{
+        Vector <User> List = new Vector<User>();
     }
-    
+
     Vector<Integer> BucketforPointer = new Vector<Integer>();
     final int MAX = (int) (2e5 + 10);
     int[][] trie = new int[MAX][300];
     int[] Count = new int[MAX];
-    @SuppressWarnings("rawtypes")
-    DynamicObject[] End = new DynamicObject[MAX];
+    User[] End = new User[MAX];
     int pointer = 0;
    
 
-    @SuppressWarnings("unchecked")
-    public <GenericObj> void Insert(String str, GenericObj obj){
+    public void Insert(String str, User obj){
         int node = 1;
         for (char ch : str.toCharArray()){
             int edge = (int)ch;
@@ -34,12 +31,11 @@ public class Trie{
             node = trie[node][edge];
             Count[node]++;
         }
-        End[node].List.add(obj);
+        System.out.println(obj.PrimaryKey + " " + obj.UserName + " " + obj.Email);
+        End[node] = obj;
     }
 
-
-    @SuppressWarnings("rawtypes")
-    public DynamicObject search(String str){
+    public User search(String str){
         int node = 1;
         for (char ch : str.toCharArray()){
             int edge = (int)ch;

@@ -30,7 +30,7 @@ public class StartApp {
 
 
     void RegistrationFunctionality(UserDatahouse userDatahouse, BufferedReader input){
-        
+       
         Registration registration = new Registration();
         registration.RegistrationForm(userDatahouse, input);
         LoginFunctionality(userDatahouse, input);

@@ -9,15 +9,23 @@ import View.RegistrationScreen.RegistrationScreen;
 
 public class Registration{
 
-    PrimaryKey PK = new PrimaryKey();
-    String PrimaryKey = PK.getPrimaryKey();
-    User user = new User(null, null, null, null, null);
+    PrimaryKey PK;
+    String PrimaryKey;
+    User user;
+
+    public Registration(){
+        PK = new PrimaryKey();
+        PrimaryKey = PK.getPrimaryKey();
+        user = new User(PrimaryKey, PrimaryKey, PrimaryKey, PrimaryKey, PrimaryKey);
+    }
 
     public void RegistrationForm(UserDatahouse userDatahouse, BufferedReader input){
 
         RegistrationScreen registrationScreen = new RegistrationScreen(user);
         try {
-            user = registrationScreen.RegistrationFormView(userDatahouse, input);
+           
+            this.user = registrationScreen.RegistrationFormView(userDatahouse, input);
+            this.user.PrimaryKey = PrimaryKey;
         } 
         catch (IOException e) {e.printStackTrace();}
         userDatahouse.AddUser(user);

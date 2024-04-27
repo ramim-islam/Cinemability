@@ -12,7 +12,7 @@ import java.util.Vector;
 public class Fileio {
     
     File file;
-    String routePath = System.getProperty("user.dir") + "/Cinemability/Cinemability/src/Database/";
+    String routePath = System.getProperty("user.dir") + "/Cinemability/Cinemability/Cinemability/src/Database/";
     public Fileio(String dir, String filename){
         this.routePath = routePath + dir;
         this.file = new File(routePath, filename);
@@ -21,17 +21,21 @@ public class Fileio {
 
     public void CreateFile(){
         if(!file.exists()){
-            try {file.createNewFile();} 
+            try {
+                file.createNewFile();
+            } 
             catch (IOException e) {e.printStackTrace();}
         }
     }
 
-    public Vector<String[]> ReadFile(){
-        Vector <String[]> Data = new Vector<String[]>();
+    public Vector<Vector<String>> ReadFile(){
+        Vector <Vector<String>> Data = new Vector<Vector<String>>();
         try (Scanner input = new Scanner(file)) {
             while (input.hasNextLine()){
                 String[] data = input.nextLine().split("\\s");
-                Data.add(data);
+                Vector <String> vectorData = new Vector<String>();
+                for (String eachdata: data) vectorData.add(eachdata);
+                Data.add(vectorData);
             }
             input.close();
         } 
@@ -40,7 +44,7 @@ public class Fileio {
         return Data;
     }
 
-    public void WriteData(Vector<String[]> data){
+    public void WriteData(Vector<Vector<String>> data){
         
     }
 
@@ -48,11 +52,12 @@ public class Fileio {
 
     }
 
-    public void AppendData(String[] Data){
+    public void AppendData(Vector<String> Data){
         System.out.println(routePath);
         try {
-            String stringData = System.lineSeparator();
+            String stringData = "";
             for (String data : Data)stringData += data + " ";
+            stringData += System.lineSeparator();
             Files.write(Paths.get(routePath), stringData.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {}
     }
