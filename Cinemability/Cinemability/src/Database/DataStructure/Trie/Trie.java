@@ -33,7 +33,7 @@ public class Trie{
         int node = 1;
         for (char ch : str.toCharArray()){
             int edge = (int)ch;
-            if (trie[node][edge] == 0)return -1;
+            if (trie[node][edge] == 0)return null;
             node = trie[node][edge];
         }
         return End[node];

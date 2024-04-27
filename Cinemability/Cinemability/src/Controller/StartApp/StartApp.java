@@ -1,17 +1,24 @@
 package Controller.StartApp;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import Controller.Login.Login;
 import Controller.Registration.Registration;
-import Database.UsersDatahouse.UserDatahouse;
+import Database.UserDatahouse.UserDatahouse;
 import Model.User.User;
 
 public class StartApp {
 
-    void LoginFunctionality(UserDatahouse userDatahouse){
+    void LoginFunctionality(UserDatahouse userDatahouse, BufferedReader input){
         
+        System.out.println("I am HGeres");
         Login login = new Login();
-        User user = login.LoginFormView(userDatahouse);
+        User user = null;
+        try {
+            user = login.LoginFormView(userDatahouse, input);
+        } 
+        catch (IOException e) {e.printStackTrace();}
         if (user == null){
             System.out.println("Login Failed. Please Enter Correct Email or Password\n");
             return;
@@ -22,14 +29,15 @@ public class StartApp {
     }
 
 
-    void RegistrationFunctionality(UserDatahouse userDatahouse, String command){
+    void RegistrationFunctionality(UserDatahouse userDatahouse, BufferedReader input){
         
         Registration registration = new Registration();
-        registration.RegistrationForm(userDatahouse);
-        LoginFunctionality(userDatahouse);
+        registration.RegistrationForm(userDatahouse, input);
+        LoginFunctionality(userDatahouse, input);
     }
 
-    public void startApp(){
+    public void startApp() throws IOException{
+        
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
         System.out.println("\n**** WelCome to the Cinemability ****\n");
@@ -39,28 +47,24 @@ public class StartApp {
 
         
         UserDatahouse userDatahouse = new UserDatahouse();
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
 
 
-
-        try (Scanner input = new Scanner(System.in)) {
-            while (true){
-                String command = input.nextLine();
-
-
-                if (command.compareTo("LOGIN") == 0){
-                    LoginFunctionality(userDatahouse);
-                    break;
-                }
-                else if (command.compareTo("REGISTER") == 0){
-                    RegistrationFunctionality(userDatahouse, command);
-                    break;
-                }
-                else{
-                    System.out.println("Please Give The Correct Command");
-                }
+        while (true){
+            String command = input.readLine();
+            if (command.compareTo("LOGIN") == 0){
+                LoginFunctionality(userDatahouse, input);
+                break;
             }
-            System.out.println("\n");
+            else if (command.compareTo("REGISTER") == 0){
+                RegistrationFunctionality(userDatahouse, input);
+                break;
+            }
+            else{
+                System.out.println("Please Give The Correct Command");
+            }
         }
+        System.out.println("\n");
     }
 }

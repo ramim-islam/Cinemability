@@ -14,7 +14,9 @@ public class Fileio {
     File file;
     String routePath = System.getProperty("user.dir") + "/Cinemability/Cinemability/src/Database/";
     public Fileio(String dir, String filename){
-        this.file = new File(routePath + dir, filename);
+        this.routePath = routePath + dir;
+        this.file = new File(routePath, filename);
+        this.routePath += filename;
     }
 
     public void CreateFile(){
@@ -31,8 +33,10 @@ public class Fileio {
                 String[] data = input.nextLine().split("\\s");
                 Data.add(data);
             }
+            input.close();
         } 
         catch (FileNotFoundException e) {e.printStackTrace();}
+        
         return Data;
     }
 
@@ -45,10 +49,11 @@ public class Fileio {
     }
 
     public void AppendData(String[] Data){
+        System.out.println(routePath);
         try {
-            for (String data : Data){
-                Files.write(Paths.get(routePath), data.getBytes(), StandardOpenOption.APPEND);
-            }
+            String stringData = System.lineSeparator();
+            for (String data : Data)stringData += data + " ";
+            Files.write(Paths.get(routePath), stringData.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {}
     }
 }
