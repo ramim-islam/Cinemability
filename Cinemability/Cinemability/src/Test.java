@@ -1,5 +1,4 @@
 import Controller.Login.Login;
-import Database.PrimaryKey.PrimaryKey;
 import Database.UserDatahouse.UserDatahouse;
 import Model.User.User;
 
@@ -30,15 +29,12 @@ public class Test {
     //     userDatahouse.isUserExist("ramimgc8@gmail.com", "ramim");
     // }
 
-    void PrimaryKeytesting(){
-        PrimaryKey pk = new PrimaryKey();
-    }
+   
 
     void Run(){
 
         // UserDataHouseTesting();
         // TrieTesting();
         // LoginTesting();
-        PrimaryKeytesting();
     }
 }

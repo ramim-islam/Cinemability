@@ -11,7 +11,7 @@ public class Movies {
     public String Categorey;
     public Vector<Cast>cast = new Vector<Cast>();
 
-    Movies(String Title, String Category, Vector<Cast> cast){
+    public Movies(String Title, String Category, Vector<Cast> cast){
         this.Title = Title;
         this.Categorey = Category;
         this.cast = cast;

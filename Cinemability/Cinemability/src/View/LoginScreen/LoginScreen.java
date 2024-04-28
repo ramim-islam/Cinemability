@@ -16,10 +16,10 @@ public class LoginScreen {
         System.out.println("\n**** Cinemability ****\n");
         System.out.println("********   LOGIN   ********\n");
         
-            System.out.println("Enter you Email : ");
+            System.out.print("Enter you Email : ");
             this.Email = input.readLine();
             
-            System.out.println("Enter your Password : ");
+            System.out.print("Enter your Password : ");
             this.Password = input.readLine();        
     }
 

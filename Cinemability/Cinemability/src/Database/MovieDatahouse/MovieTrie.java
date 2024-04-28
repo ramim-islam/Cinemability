@@ -1,19 +1,23 @@
-package Database.UserDatahouse;
+package Database.MovieDatahouse;
 import java.util.Vector;
-import Model.User.User;
+
+import Model.Movies.Movies;
 
 
-public class UserTrie{
-    
+
+public class MovieTrie{
+
+
     Vector<Integer> BucketforPointer = new Vector<Integer>();
     final int MAX = (int) (2e5 + 10);
     int[][] trie = new int[MAX][300];
     int[] Count = new int[MAX];
-    User[] End = new User[MAX];
+    @SuppressWarnings("unchecked")
+    Vector <Movies>[] End = new Vector[MAX];
     int pointer = 0;
    
 
-    public void Insert(String str, User obj){
+    public void Insert(String str, Movies obj){
         int node = 1;
         for (char ch : str.toCharArray()){
             int edge = (int)ch;
@@ -26,10 +30,10 @@ public class UserTrie{
             node = trie[node][edge];
             Count[node]++;
         }
-        End[node] = obj;
+        End[node].add(obj);
     }
 
-    public User search(String str){
+    public Vector<Movies> search(String str){
         int node = 1;
         for (char ch : str.toCharArray()){
             int edge = (int)ch;

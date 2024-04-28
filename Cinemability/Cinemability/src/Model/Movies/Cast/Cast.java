@@ -1,7 +1,7 @@
 package Model.Movies.Cast;
 public class Cast {
-    String name;
-    Cast(String name){
+    public String name;
+    public Cast(String name){
         this.name = name;
     }
 }

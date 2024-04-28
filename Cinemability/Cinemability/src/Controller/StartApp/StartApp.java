@@ -5,12 +5,16 @@ import java.io.InputStreamReader;
 
 import Controller.Login.Login;
 import Controller.Registration.Registration;
+import Database.MovieDatahouse.MovieDatahouse;
 import Database.UserDatahouse.UserDatahouse;
 import Model.User.User;
+import View.FeatureView.FavouriteList.FavouriteList;
+import View.FeatureView.SearchScreen.SearchScreen;
+import View.HomeScreen.HomeScreen;
 
 public class StartApp {
 
-    void LoginFunctionality(UserDatahouse userDatahouse, BufferedReader input){
+    void LoginFunctionality(UserDatahouse userDatahouse, BufferedReader input) throws IOException{
         
         System.out.println("I am HGeres");
         Login login = new Login();
@@ -24,12 +28,29 @@ public class StartApp {
             return;
         }
         else{
+
+            MovieDatahouse movieDatahouse = new MovieDatahouse();
             System.out.println("Hello " + user.UserName);
+            String command = HomeScreen.display(user, input);
+            while(true){
+                if (command.compareTo("HOME") == 0){
+                    command = HomeScreen.display(user, input);
+                }
+                else if (command.compareTo("SEARCH") == 0){
+                    command = SearchScreen.display(user, input, movieDatahouse);
+                }
+                else if (command.compareTo("FAV_LIST") == 0){
+                    command = FavouriteList.display(user, input);
+                }
+                else if (command.compareTo("LOGOUT") == 0){
+                    break;
+                }
+            }
         }
     }
 
 
-    void RegistrationFunctionality(UserDatahouse userDatahouse, BufferedReader input){
+    void RegistrationFunctionality(UserDatahouse userDatahouse, BufferedReader input) throws IOException{
        
         Registration registration = new Registration();
         registration.RegistrationForm(userDatahouse, input);
