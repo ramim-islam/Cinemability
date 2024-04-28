@@ -9,6 +9,15 @@ import Model.Movies.Cast.Cast;
 
 public class MovieDatahouse extends MovieTrie{
     Fileio file;
+
+    void InsertMovie(Movies movies){
+        Insert(movies.Title, movies);
+        Insert(movies.Categorey, movies);
+        for (Cast cast: movies.cast){
+            Insert(cast.name, movies);
+        }
+    }
+
     public MovieDatahouse(){
         this.file = new Fileio("MovieDatahouse/", "MovieDatahouse.txt");
         file.CreateFile();
@@ -19,7 +28,7 @@ public class MovieDatahouse extends MovieTrie{
                 _cast.add(new Cast(data.get(i)));
             }
             Movies movie = new Movies(data.get(0), data.get(1), _cast);
-            if (movie != null)Insert(movie.Title, movie);
+            if (movie != null)InsertMovie(movie);
         }
     }
 
@@ -34,7 +43,7 @@ public class MovieDatahouse extends MovieTrie{
         
 
         file.AppendData(movieData);
-        Insert(movie.Title, movie);
+        if (movie != null)InsertMovie(movie);
 
     }
 

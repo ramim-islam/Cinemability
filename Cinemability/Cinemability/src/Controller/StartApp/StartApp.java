@@ -30,7 +30,6 @@ public class StartApp {
         else{
 
             MovieDatahouse movieDatahouse = new MovieDatahouse();
-            System.out.println("Hello " + user.UserName);
             String command = HomeScreen.display(user, input);
             while(true){
                 if (command.compareTo("HOME") == 0){
@@ -57,15 +56,19 @@ public class StartApp {
         LoginFunctionality(userDatahouse, input);
     }
 
-    public void startApp() throws IOException{
-        
+    void baseDisplay(){
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
         System.out.println("\n**** WelCome to the Cinemability ****\n");
         System.out.println("# If do have a account Please Login otherwise Register first");
         System.out.println("1. To Login type LOGIN");
         System.out.println("2. To Register type REGISTER");
+    }
 
+    public void startApp() throws IOException{
+        
+       
+        baseDisplay();
         
         UserDatahouse userDatahouse = new UserDatahouse();
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));

@@ -1,4 +1,6 @@
 package Database.MovieDatahouse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import Model.Movies.Movies;
@@ -30,7 +32,10 @@ public class MovieTrie{
             node = trie[node][edge];
             Count[node]++;
         }
-        End[node].add(obj);
+        if (obj != null){
+            End[node] = new Vector<Movies>();
+            End[node].add(obj);
+        }
     }
 
     public Vector<Movies> search(String str){
@@ -57,8 +62,7 @@ public class MovieTrie{
                 node = Tempnode;
                 Count[node]--;
             }
-            End[node] = null;
+            End[node].clear();
         }
-        
     }
 }

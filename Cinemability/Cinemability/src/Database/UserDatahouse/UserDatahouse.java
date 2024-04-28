@@ -12,7 +12,7 @@ public class UserDatahouse extends UserTrie{
         file.CreateFile();
         Vector<Vector<String>> userData = file.ReadFile();
         for (Vector<String> data : userData){
-            User user = new User(data.get(1), data.get(2), data.get(3), data.get(4));
+            User user = new User(data.get(0), data.get(1), data.get(2), data.get(3));
             if (user != null)Insert(user.Email, user);
         }
     }

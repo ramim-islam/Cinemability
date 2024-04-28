@@ -32,7 +32,7 @@ public class Fileio {
         Vector <Vector<String>> Data = new Vector<Vector<String>>();
         try (Scanner input = new Scanner(file)) {
             while (input.hasNextLine()){
-                String[] data = input.nextLine().split("\\s");
+                String[] data = input.nextLine().split(",");
                 Vector <String> vectorData = new Vector<String>();
                 for (String eachdata: data) vectorData.add(eachdata);
                 Data.add(vectorData);
@@ -56,7 +56,7 @@ public class Fileio {
         System.out.println(routePath);
         try {
             String stringData = "";
-            for (String data : Data)stringData += data + " ";
+            for (String data : Data)stringData += data + ",";
             stringData += System.lineSeparator();
             Files.write(Paths.get(routePath), stringData.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {}
