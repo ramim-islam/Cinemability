@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Vector;
 import Database.MovieDatahouse.MovieDatahouse;
 import Database.UserDatahouse.UserDatahouse;
@@ -30,12 +31,17 @@ public class Test {
     void movieDatahouseTesting(){
         MovieDatahouse movieDatahouse = new MovieDatahouse();
     }
+    // void userDatahouseTesting() throws IOException{
+    //     UserDatahouse userDatahouse = new UserDatahouse(new MovieDatahouse());
+    //     userDatahouse.file.DeleteContent();
+    // }
    
 
-    void Run(){
+    void Run() throws IOException{
 
         // UserDataHouseTesting();
         // TrieTesting();
-        movieDatahouseTesting();
+        // movieDatahouseTesting();
+        //userDatahouseTesting();
     }
 }

@@ -13,6 +13,7 @@ public class MovieTrie{
     final int MAX = (int) (2e5 + 10);
     int[][] trie = new int[MAX][300];
     int[] Count = new int[MAX];
+    boolean[] isMovie = new boolean[MAX];
     @SuppressWarnings("unchecked")
     Vector <Movies>[] End = new Vector[MAX];
     int pointer = 0;
@@ -34,6 +35,7 @@ public class MovieTrie{
         if (obj != null){
             End[node] = new Vector<Movies>();
             End[node].add(obj);
+            isMovie[node] = (obj.Title == str);
         }
     }
 
@@ -67,11 +69,11 @@ public class MovieTrie{
 
      
     void getAllMovies(int node){
-        if (End[node] != null){
+        if (End[node] != null && isMovie[node]){
             Movies movie = End[node].lastElement();
             movielist.add(movie);
         }
-        for (int edge = 0; edge <= 300; edge++){
+        for (int edge = 0; edge < 300; edge++){
             if(trie[node][edge] != 0){
                 getAllMovies(trie[node][edge]);
             }

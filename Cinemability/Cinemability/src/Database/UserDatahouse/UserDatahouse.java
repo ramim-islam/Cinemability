@@ -10,7 +10,7 @@ import Database.MovieDatahouse.MovieDatahouse;
 public class UserDatahouse extends UserTrie{
 
 
-    Fileio file;
+    public Fileio file;
     public UserDatahouse(MovieDatahouse movieDatahouse){
         this.file = new Fileio("UserDatahouse/", "UserDatahouse.txt");
         file.CreateFile();

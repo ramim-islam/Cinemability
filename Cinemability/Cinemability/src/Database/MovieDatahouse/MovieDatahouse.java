@@ -8,8 +8,8 @@ import Model.Movies.Cast.Cast;
 
 
 public class MovieDatahouse extends MovieTrie{
-    Fileio file;
-
+    public Fileio file;
+    
     void InsertMovie(Movies movies){
         Insert(movies.Title, movies);
         Insert(movies.Categorey, movies);

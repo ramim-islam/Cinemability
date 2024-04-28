@@ -2,6 +2,7 @@ package Database.FileIO;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,7 +12,7 @@ import java.util.Vector;
 
 public class Fileio {
     
-    File file;
+    public File file;
     String routePath = System.getProperty("user.dir") + "/Cinemability/Cinemability/src/Database/";
     public Fileio(String dir, String filename){
         this.routePath = routePath + dir;
@@ -44,20 +45,22 @@ public class Fileio {
         return Data;
     }
 
-    public void WriteData(Vector<Vector<String>> data){
-        
+    public void WriteData(Vector<Vector<String>> data) throws IOException{
+       
     }
 
-    public void DeleteData(){
-
+    public void DeleteContent() throws IOException{
+        FileOutputStream writer = new FileOutputStream(routePath);
+        writer.write(("").getBytes());
+        writer.close();
     }
 
     public void AppendData(Vector<String> Data){
-        System.out.println(routePath);
         try {
             String stringData = "";
+            if (file.length() != 0)stringData += System.lineSeparator();
             for (String data : Data)stringData += data + ",";
-            stringData += System.lineSeparator();
+            
             Files.write(Paths.get(routePath), stringData.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {}
     }

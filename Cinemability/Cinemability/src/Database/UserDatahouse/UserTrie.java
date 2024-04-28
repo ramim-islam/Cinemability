@@ -1,10 +1,13 @@
 package Database.UserDatahouse;
 import java.util.Vector;
+
+import Model.Movies.Movies;
 import Model.User.User;
 
 
 public class UserTrie{
     
+    Vector <User> userList = new Vector<User>();
     Vector<Integer> BucketforPointer = new Vector<Integer>();
     final int MAX = (int) (2e5 + 10);
     int[][] trie = new int[MAX][300];
@@ -56,5 +59,23 @@ public class UserTrie{
             End[node] = null;
         }
         
+    }
+
+    void getAllUser(int node){
+        if (End[node] != null){
+            User user = End[node];
+            userList.add(user);
+        }
+        for (int edge = 0; edge < 300; edge++){
+            if(trie[node][edge] != 0){
+                getAllUser(trie[node][edge]);
+            }
+        }
+    }
+
+    public Vector <User> ShowAllUser(){
+        userList.clear();
+        getAllUser(1);
+        return userList;
     }
 }
