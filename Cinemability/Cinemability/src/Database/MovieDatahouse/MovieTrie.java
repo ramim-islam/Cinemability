@@ -1,6 +1,4 @@
 package Database.MovieDatahouse;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 import Model.Movies.Movies;
@@ -11,6 +9,7 @@ public class MovieTrie{
 
 
     Vector<Integer> BucketforPointer = new Vector<Integer>();
+    Vector <Movies> movielist = new Vector<Movies>();
     final int MAX = (int) (2e5 + 10);
     int[][] trie = new int[MAX][300];
     int[] Count = new int[MAX];
@@ -64,5 +63,24 @@ public class MovieTrie{
             }
             End[node].clear();
         }
+    }
+
+     
+    void getAllMovies(int node){
+        if (End[node] != null){
+            Movies movie = End[node].lastElement();
+            movielist.add(movie);
+        }
+        for (int edge = 0; edge <= 300; edge++){
+            if(trie[node][edge] != 0){
+                getAllMovies(trie[node][edge]);
+            }
+        }
+    }
+
+    public Vector <Movies> ShowAllMoviesSortedBasedOnMovieTitle(){
+        movielist.clear();
+        getAllMovies(1);
+        return movielist;
     }
 }

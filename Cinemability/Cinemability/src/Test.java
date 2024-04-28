@@ -1,13 +1,12 @@
-import java.io.BufferedReader;
-
-import Controller.Login.Login;
+import java.util.Vector;
 import Database.MovieDatahouse.MovieDatahouse;
 import Database.UserDatahouse.UserDatahouse;
+import Model.Movies.Movies;
 import Model.User.User;
 
 public class Test {
 
-    UserDatahouse userDatahouse = new UserDatahouse();
+    UserDatahouse userDatahouse = new UserDatahouse(new MovieDatahouse());
    
     void UserDataHouseTesting(){
         User user = new User("ramim", "ramimgc8@gmail.com", "ramim", "Admin");

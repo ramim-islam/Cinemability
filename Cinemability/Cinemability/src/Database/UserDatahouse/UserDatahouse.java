@@ -1,18 +1,27 @@
 package Database.UserDatahouse;
+import Model.Movies.Movies;
 import Model.User.User;
 import java.util.Vector;
 import Database.FileIO.Fileio;
+import Database.MovieDatahouse.MovieDatahouse;
 
 
 
 public class UserDatahouse extends UserTrie{
+
+
     Fileio file;
-    public UserDatahouse(){
+    public UserDatahouse(MovieDatahouse movieDatahouse){
         this.file = new Fileio("UserDatahouse/", "UserDatahouse.txt");
         file.CreateFile();
         Vector<Vector<String>> userData = file.ReadFile();
         for (Vector<String> data : userData){
             User user = new User(data.get(0), data.get(1), data.get(2), data.get(3));
+            for (int i = 4; i < data.size(); i++){
+                Movies movie = movieDatahouse.GetMovie(data.get(i)).lastElement();
+                user.favouriteMovies.Insert(movie.Title, movie);
+            } 
+           
             if (user != null)Insert(user.Email, user);
         }
     }
@@ -24,8 +33,6 @@ public class UserDatahouse extends UserTrie{
         userdata.add(user.Email);
         userdata.add(user.Password);
         userdata.add(user.userType); 
-        
-
         file.AppendData(userdata);
         Insert(user.Email, user);
 

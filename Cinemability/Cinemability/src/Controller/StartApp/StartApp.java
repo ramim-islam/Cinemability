@@ -14,6 +14,16 @@ import View.HomeScreen.HomeScreen;
 
 public class StartApp {
 
+    MovieDatahouse movieDatahouse;
+    UserDatahouse userDatahouse;
+    BufferedReader input;
+
+    public StartApp(){
+        movieDatahouse = new MovieDatahouse();
+        userDatahouse = new UserDatahouse(movieDatahouse);
+        input = new BufferedReader(new InputStreamReader(System.in));
+    }
+
     void LoginFunctionality(UserDatahouse userDatahouse, BufferedReader input) throws IOException{
         
         System.out.println("I am HGeres");
@@ -29,7 +39,7 @@ public class StartApp {
         }
         else{
 
-            MovieDatahouse movieDatahouse = new MovieDatahouse();
+           
             String command = HomeScreen.display(user, input);
             while(true){
                 if (command.compareTo("HOME") == 0){
@@ -39,7 +49,7 @@ public class StartApp {
                     command = SearchScreen.display(user, input, movieDatahouse);
                 }
                 else if (command.compareTo("FAV_LIST") == 0){
-                    command = FavouriteList.display(user, input);
+                    command = FavouriteList.display(user, input, movieDatahouse);
                 }
                 else if (command.compareTo("LOGOUT") == 0){
                     break;
@@ -70,8 +80,7 @@ public class StartApp {
        
         baseDisplay();
         
-        UserDatahouse userDatahouse = new UserDatahouse();
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        
 
 
 

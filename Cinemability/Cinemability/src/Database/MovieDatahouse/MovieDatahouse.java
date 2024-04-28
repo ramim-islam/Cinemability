@@ -48,7 +48,7 @@ public class MovieDatahouse extends MovieTrie{
     }
 
 
-    public Vector<Movies> SearchMovie(String Keyword){
+    public Vector<Movies> GetMovie(String Keyword){
         return search(Keyword);
     }
 

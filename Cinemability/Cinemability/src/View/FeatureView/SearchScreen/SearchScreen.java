@@ -35,7 +35,7 @@ public class SearchScreen {
             if (keyword.compareTo("DONE") == 0){
                 break;
             }
-            Vector <Movies> Movie = movieDatahouse.SearchMovie(keyword);
+            Vector <Movies> Movie = movieDatahouse.GetMovie(keyword);
             if (Movie.isEmpty()){
                 System.out.println("Try Again ?\n");
             }else{
@@ -53,7 +53,7 @@ public class SearchScreen {
                     System.out.print("Add this Movie to your favouriteList ? (YES) / (NO) : ");
                     String addmovie = input.readLine();
                     if (addmovie.compareTo("YES") == 0){
-                        user.favouriteMovies.add(movie);
+                        user.favouriteMovies.Insert(movie.Title, movie);
                         System.out.println("\n(" + movie.Title + ")" + " is added to your Favourite Movie List");
                     }
                 }
@@ -73,6 +73,7 @@ public class SearchScreen {
             
         }
 
+        baseDisplay(user);
 
         System.out.println("1. To move to Homepage type   : HOME");
         System.out.println("2. To See Favourite_List type : FAV_LIST");
@@ -82,6 +83,8 @@ public class SearchScreen {
         System.out.print("Command : ");
         String command = input.readLine();
         
+
+         
         return command;
         
 

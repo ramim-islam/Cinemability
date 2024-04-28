@@ -6,6 +6,7 @@ import Model.User.User;
 
 public class HomeScreen {
     public static String display(User user, BufferedReader input) throws IOException{
+        
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
         System.out.println("\n**** Cinemability ****\n");

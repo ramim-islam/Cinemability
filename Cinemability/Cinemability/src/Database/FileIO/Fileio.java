@@ -12,7 +12,7 @@ import java.util.Vector;
 public class Fileio {
     
     File file;
-    String routePath = System.getProperty("user.dir") + "/Cinemability/Cinemability/Cinemability/src/Database/";
+    String routePath = System.getProperty("user.dir") + "/Cinemability/Cinemability/src/Database/";
     public Fileio(String dir, String filename){
         this.routePath = routePath + dir;
         this.file = new File(routePath, filename);
