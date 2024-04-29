@@ -1,88 +1,73 @@
 package Database.MovieDatahouse;
 import java.util.Vector;
-
 import Model.Movies.Movies;
 
+public class MovieTrie {
 
+    Vector <Movies> userList = new Vector<Movies>();
+    class Trienode{
+        Vector <Movies> movie = new Vector<Movies>();
+        Trienode[] trienode = new Trienode[300];
+        int Counter = 0;
+        boolean isMovie = false;
+    }
 
-public class MovieTrie{
-
-
-    Vector<Integer> BucketforPointer = new Vector<Integer>();
-    Vector <Movies> movielist = new Vector<Movies>();
-    final int MAX = (int) (2e5 + 10);
-    int[][] trie = new int[MAX][300];
-    int[] Count = new int[MAX];
-    boolean[] isMovie = new boolean[MAX];
-    @SuppressWarnings("unchecked")
-    Vector <Movies>[] End = new Vector[MAX];
-    int pointer = 0;
-   
-
-    public void Insert(String str, Movies obj){
-        int node = 1;
-        for (char ch : str.toCharArray()){
+    Trienode rootNode;
+    public MovieTrie(){
+        rootNode = new Trienode();
+    }
+    public void Insert(String str, Movies movie){
+        Trienode node = rootNode;
+        for (char ch: str.toCharArray()){
             int edge = (int)ch;
-            if (trie[node][edge] == 0){
-                if (!BucketforPointer.isEmpty()){
-                    trie[node][edge] = (int)BucketforPointer.lastElement();
-                    BucketforPointer.remove(BucketforPointer.size() - 1);
-                }else trie[node][edge] = ++pointer;
+            if(node.trienode[edge] == null){
+                node.trienode[edge] = new Trienode();
             }
-            node = trie[node][edge];
-            Count[node]++;
+            node = node.trienode[edge];
+            node.Counter++;
         }
-        if (obj != null){
-            End[node] = new Vector<Movies>();
-            End[node].add(obj);
-            isMovie[node] = (obj.Title == str);
-        }
+        if (str == movie.Title)node.isMovie = true;
+        node.movie.add(movie);
     }
 
-    public Vector<Movies> search(String str){
-        int node = 1;
-        for (char ch : str.toCharArray()){
+    public Vector <Movies> Search(String Keyword){
+        Trienode node = rootNode;
+        for (char ch: Keyword.toCharArray()){
             int edge = (int)ch;
-            if (trie[node][edge] == 0)return null;
-            node = trie[node][edge];
+            if(node.trienode[edge] == null)return null;
+            node = node.trienode[edge];
         }
-        return End[node];
-    }
-   
-    public void delete(String str){
-
-        if(search(str) != null){
-            int node = 1;
-            for (char ch : str.toCharArray()){
-                int edge = (int)ch;
-                int Tempnode = trie[node][edge];
-                if (Count[trie[node][edge]] == 1){
-                    BucketforPointer.add(trie[node][edge]);
-                    trie[node][edge] = 0;
-                }
-                node = Tempnode;
-                Count[node]--;
-            }
-            End[node].clear();
-        }
+        return node.movie;
     }
 
-     
-    void getAllMovies(int node){
-        if (End[node] != null && isMovie[node]){
-            Movies movie = End[node].lastElement();
-            movielist.add(movie);
+    void DeleteUser(String Email){
+        Trienode node = rootNode;
+        if(Search(Email) == null)return;
+        for (char ch: Email.toCharArray()){
+            int edge = (int)ch;
+            Trienode temporaryNode = node.trienode[edge];
+            if(temporaryNode.Counter == 1)node.trienode[edge] = null;
+            if(node != rootNode)node.Counter--;
+            node = temporaryNode;
         }
-        for (int edge = 0; edge < 300; edge++){
-            if(trie[node][edge] != 0){
-                getAllMovies(trie[node][edge]);
+        node.movie.clear();
+    }
+
+    void getAllMovie(Trienode node){
+        if (node.movie != null && node.isMovie){
+            userList.add(node.movie.lastElement());
+        }
+        for (int i = 0; i < 300; i++){
+            if (node.trienode[i] != null){
+                getAllMovie(node.trienode[i]);
             }
         }
     }
 
     public Vector <Movies> ShowAllMoviesSortedBasedOnMovieTitle(){
-        movielist.clear();
-        getAllMovies(1);
-        return movielist;
+        userList.clear();
+        getAllMovie(rootNode);
+        return userList;
     }
+
 }

@@ -29,7 +29,7 @@ public class StartApp {
 
     void LoginFunctionality(UserDatahouse userDatahouse, BufferedReader input) throws IOException{
         
-        System.out.println("I am HGeres");
+        
         Login login = new Login();
         User user = null;
         try {

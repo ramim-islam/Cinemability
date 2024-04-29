@@ -1,23 +1,22 @@
-package Database.UserDatahouse;
-
+package Database.DataStructure.Trie.ObjectbasedTrieImplementation;
 import java.util.Vector;
+import Model.Movies.Movies;
 
-import Model.User.User;
+public class Trie {
 
-public class UserTrie {
-
-    Vector <User> userList = new Vector<User>();
+    Vector <Movies> userList = new Vector<Movies>();
     class Trienode{
-        User user = null;
+        Vector <Movies> movie = new Vector<Movies>();
         Trienode[] trienode = new Trienode[300];
         int Counter = 0;
+        boolean isMovie = false;
     }
 
     Trienode rootNode;
-    public UserTrie(){
+    public Trie(){
         rootNode = new Trienode();
     }
-    public void Insert(String str, User user){
+    public void Insert(String str, Movies movie){
         Trienode node = rootNode;
         for (char ch: str.toCharArray()){
             int edge = (int)ch;
@@ -27,17 +26,18 @@ public class UserTrie {
             node = node.trienode[edge];
             node.Counter++;
         }
-        node.user = user;
+        if (str == movie.Title)node.isMovie = true;
+        node.movie.add(movie);
     }
 
-    public User Search(String Email){
+    public Vector <Movies> Search(String Email){
         Trienode node = rootNode;
         for (char ch: Email.toCharArray()){
             int edge = (int)ch;
             if(node.trienode[edge] == null)return null;
             node = node.trienode[edge];
         }
-        return node.user;
+        return node.movie;
     }
 
     void DeleteUser(String Email){
@@ -50,22 +50,23 @@ public class UserTrie {
             if(node != rootNode)node.Counter--;
             node = temporaryNode;
         }
+        node.movie.clear();
     }
 
-    void getAllUser(Trienode node){
-        if (node.user != null){
-            userList.add(node.user);
+    void getAllMovie(Trienode node){
+        if (node.movie != null && node.isMovie){
+            userList.add(node.movie.lastElement());
         }
         for (int i = 0; i < 300; i++){
             if (node.trienode[i] != null){
-                getAllUser((node.trienode[i]));
+                getAllMovie(node.trienode[i]);
             }
         }
     }
 
-    public Vector <User> ShowAllUser(){
+    public Vector <Movies> ShowAllMoviesSortedBasedOnMovieTitle(){
         userList.clear();
-        getAllUser(rootNode);
+        getAllMovie(rootNode);
         return userList;
     }
 

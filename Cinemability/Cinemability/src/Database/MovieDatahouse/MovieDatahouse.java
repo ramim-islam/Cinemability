@@ -49,7 +49,7 @@ public class MovieDatahouse extends MovieTrie{
 
 
     public Vector<Movies> GetMovie(String Keyword){
-        return search(Keyword);
+        return Search(Keyword);
     }
 
 

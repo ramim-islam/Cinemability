@@ -40,7 +40,7 @@ public class UserDatahouse extends UserTrie{
 
 
     public User getUser(String Email){
-        return search(Email);
+        return Search(Email);
     }
 
     public boolean isUserExist(String Email, String Password){

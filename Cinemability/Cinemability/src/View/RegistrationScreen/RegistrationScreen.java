@@ -26,7 +26,7 @@ public class RegistrationScreen {
         while(true){
             System.out.print("Enter your Email : ");
             user.Email = input.readLine();
-            if (userDatahouse.search(user.Email) != null){
+            if (userDatahouse.Search(user.Email) != null){
                 System.out.println("This Email Already Exists\n");
                 continue;
             }

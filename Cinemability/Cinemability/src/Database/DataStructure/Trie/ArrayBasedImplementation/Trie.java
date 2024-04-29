@@ -1,4 +1,4 @@
-package Database.DataStructure.Trie;
+package Database.DataStructure.Trie.ArrayBasedImplementation;
 import java.util.Vector;
 
 
