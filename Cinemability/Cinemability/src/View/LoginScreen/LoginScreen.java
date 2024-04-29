@@ -16,11 +16,24 @@ public class LoginScreen {
         System.out.println("\n**** Cinemability ****\n");
         System.out.println("********   LOGIN   ********\n");
         
+        while(true){
             System.out.print("Enter you Email : ");
             this.Email = input.readLine();
-            
+            if(this.Email.compareTo("") == 0){
+                System.out.println("Please Enter a Valid Email");
+                continue;
+            }
+            break;
+        }
+
+        while(true){
             System.out.print("Enter your Password : ");
             this.Password = input.readLine();        
+            if (this.Password.compareTo("") == 0){
+                continue;
+            }
+            break;
+        }
     }
 
     public String getEmail(){

@@ -19,10 +19,15 @@ public class RegistrationScreen {
         System.out.println("\n**** Cinemability ****\n");
         System.out.println("********   REGISTRATION   ********\n");
 
-        
-        System.out.print("Enter you Username (Username Must be with one word) : ");
-        user.UserName = input.readLine();
-
+        while(true){
+            System.out.print("Enter you Username (Username Must be with one word) : ");
+            user.UserName = input.readLine();
+            if (user.UserName.compareTo("") == 0){
+                System.out.println("Please Enter a Valid Username");
+                continue;
+            }
+            break;
+        }
         while(true){
             System.out.print("Enter your Email : ");
             user.Email = input.readLine();
@@ -30,11 +35,21 @@ public class RegistrationScreen {
                 System.out.println("This Email Already Exists\n");
                 continue;
             }
+            if(user.Email.compareTo("") == 0){
+                System.out.println("Your given Email Address is not Valid. Please Enter a Valid Email Address.");
+                continue;
+            }
             break;
         }
-        System.out.print("Enter your Password : ");
-        user.Password = input.readLine();
-
+        while(true){
+            System.out.print("Enter your Password : ");
+            user.Password = input.readLine();
+            if(user.Password.compareTo("") == 0){
+                System.out.println("Your Password is not good, Please Enter a good Password");
+                continue;
+            }
+            break;
+        }
         while (true){
             System.out.print("ReType your Password : ");
             this.rPassword = input.readLine();
